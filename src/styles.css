@@ -6,8 +6,9 @@ body {
 
 h2 {
   padding: 10px;
-  margin: 5px;
+  margin: 10px 20px;
   color: #4682b4;
+  text-align: left;
 }
 
 button {
