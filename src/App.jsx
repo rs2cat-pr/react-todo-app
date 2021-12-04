@@ -81,11 +81,11 @@ export const App = () => {
       <div className="incomplete-area">
         <h4>未完了</h4>
         <ul id="incomplete-list">
-          {imcompleteTodos.map((todo, index) => {
+          {imcompleteTodos.map((imcompleteTodo, index) => {
             return (
               // mapレンダリングの時はkeyを設定する
-              <li key={todo} className="list-content">
-                <span>{todo}</span>
+              <li key={imcompleteTodo} className="list-content">
+                <span>{imcompleteTodo}</span>
                 {/* アロー関数で新しく関数を生成し、indexを引き渡す */}
                 <button onClick={() => onClickDone(index)}>done</button>
                 <button onClick={() => onClickDelete(index)}>delete</button>
@@ -99,10 +99,10 @@ export const App = () => {
         <h4>完了</h4>
         <div>
           <ul>
-            {completeTodos.map((todo, index) => {
+            {completeTodos.map((completeTodo, index) => {
               return (
-                <li key={todo} className="list-content">
-                  <span>{todo}</span>
+                <li key={completeTodo} className="list-content">
+                  <span>{completeTodo}</span>
                   <button onClick={() => onClickUndo(index)}>undo</button>
                 </li>
               );
