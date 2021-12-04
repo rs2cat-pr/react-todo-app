@@ -9,20 +9,14 @@ export const App = () => {
   const [todoText, setTodotext] = useState("");
 
   /** 未完了リストの値を保持する　*/
-  const [imcompleteTodos, setImcompleteTodos] = useState([
-    "未完了Todo1",
-    "未完了Todo2"
-  ]);
+  const [imcompleteTodos, setImcompleteTodos] = useState([]);
   /** 完了リストの値を保持する　*/
-  const [completeTodos, setCompleteTodos] = useState([
-    "完了Todo1",
-    "完了Todo2"
-  ]);
+  const [completeTodos, setCompleteTodos] = useState([]);
 
   /** 新規追加に入力がされたときに動く関数　event は変化があったときに入ってくる */
   const onChangeTodoText = (event) => setTodotext(event.target.value);
 
-  /**新規追加ボタンが押されたときに動く関数 */
+  /**新規追加ボタンが押されたときに項目を未完了リストへ配置する関数 */
   const onClickAdd = () => {
     //空欄の時は処理をしない
     if (todoText === "") return;
@@ -30,6 +24,39 @@ export const App = () => {
     const newTodos = [...imcompleteTodos, todoText];
     setImcompleteTodos(newTodos);
     setTodotext("");
+  };
+
+  /**deleteボタンが押されたときに項目を削除する関数 */
+  const onClickDelete = (index) => {
+    const newTodos = [...imcompleteTodos];
+    // splice関数　index番目の要素から1個消す
+    newTodos.splice(index, 1); //指定したindex番目を削除する
+    setImcompleteTodos(newTodos);
+  };
+
+  /**doneボタンが押されたときに項目を完了リストへ送る関数 */
+  const onClickDone = (index) => {
+    const newImcompleteTodos = [...imcompleteTodos];
+    // splice関数　index番目の要素から1個消す
+    newImcompleteTodos.splice(index, 1); //指定したindex番目を削除する
+    //完了リストの配列に項目を追加
+    const newCompleteTodos = [...completeTodos, imcompleteTodos[index]];
+    //useStateを更新
+    setImcompleteTodos(newImcompleteTodos);
+    setCompleteTodos(newCompleteTodos);
+  };
+
+  /**undoボタンが押されたときに項目を未完了リストに戻す関数 */
+  const onClickUndo = (index) => {
+    //完了リストの配列定義
+    const newCompleteTodos = [...completeTodos];
+    //完了リストの配列からindexの項目削除
+    newCompleteTodos.splice(index, 1);
+    //未完了リストの配列からindexの項目追加
+    const newImcompleteTodos = [...imcompleteTodos, completeTodos[index]];
+    //未完了・完了のuseStateを更新
+    setCompleteTodos(newCompleteTodos);
+    setImcompleteTodos(newImcompleteTodos);
   };
 
   /** 仮想DOM */
@@ -54,13 +81,14 @@ export const App = () => {
       <div className="incomplete-area">
         <h4>未完了</h4>
         <ul id="incomplete-list">
-          {imcompleteTodos.map((todo) => {
+          {imcompleteTodos.map((todo, index) => {
             return (
               // mapレンダリングの時はkeyを設定する
               <li key={todo} className="list-content">
                 <span>{todo}</span>
-                <button>done</button>
-                <button>delete</button>
+                {/* アロー関数で新しく関数を生成し、indexを引き渡す */}
+                <button onClick={() => onClickDone(index)}>done</button>
+                <button onClick={() => onClickDelete(index)}>delete</button>
               </li>
             );
           })}
@@ -71,11 +99,11 @@ export const App = () => {
         <h4>完了</h4>
         <div>
           <ul>
-            {completeTodos.map((todo) => {
+            {completeTodos.map((todo, index) => {
               return (
                 <li key={todo} className="list-content">
                   <span>{todo}</span>
-                  <button>undo</button>
+                  <button onClick={() => onClickUndo(index)}>undo</button>
                 </li>
               );
             })}
