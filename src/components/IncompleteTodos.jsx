@@ -5,13 +5,24 @@ import React from "react";
  * @param {*} props
  */
 export const IncompleteTodos = (props) => {
+  //propsの分割代入
   const { incompleteTodos, onClickDone, onClickDelete } = props;
+
+  //input areaへのstyleの設定
+  const style = {
+    backgroundColor: "#b0e0e6",
+    width: "500px",
+    minHeight: "200px",
+    padding: "8px",
+    margin: "8px",
+    borderRadius: "10px"
+  };
 
   //仮想DOM
   return (
     <>
       {/* 未完了リスト */}
-      <div className="incomplete-area">
+      <div style={style}>
         <h4>未完了</h4>
         <ul id="incomplete-list">
           {incompleteTodos.map((incompleteTodo, index) => {

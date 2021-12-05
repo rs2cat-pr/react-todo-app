@@ -22,42 +22,6 @@ button:hover {
   color: #ffffff;
 }
 
-.input-area {
-  background-color: #afeeee;
-  width: 500px;
-  height: 90px;
-  padding: 10px;
-  margin: 8px;
-  border-radius: 10px;
-}
-
-input {
-  border-radius: 10px;
-  border: none;
-  padding: 6px 16px;
-  margin: 15px 2px;
-  outline: none;
-  text-align: center;
-}
-
-.incomplete-area {
-  background-color: #b0e0e6;
-  width: 500px;
-  min-height: 200px;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 10px;
-}
-
-.complete-area {
-  background-color: #add8e6;
-  width: 500px;
-  min-height: 200px;
-  padding: 8px;
-  margin: 8px;
-  border-radius: 10px;
-}
-
 span {
   margin-right: 8px;
 }
