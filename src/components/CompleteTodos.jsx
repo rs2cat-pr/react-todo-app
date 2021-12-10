@@ -8,7 +8,7 @@ export const CompleteTodos = (props) => {
   //propsの分割代入
   const { completeTodos, onClickUndo } = props;
 
-  //
+  //完了リストのstyle
   const style = {
     backgroundColor: "#add8e6",
     width: "500px",

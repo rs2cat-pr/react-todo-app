@@ -6,7 +6,7 @@ import React from "react";
  */
 export const InputTodo = (props) => {
   //propsの分割代入
-  const { todoText, onChange, onClick } = props;
+  const { todoText, onChange, onClick, disabled } = props;
 
   // input areaへのstyleの設定
   const style = {
@@ -44,8 +44,9 @@ export const InputTodo = (props) => {
           style={formStyle}
           value={todoText}
           onChange={onChange}
+          disabled={disabled}
         />
-        <button id="add-button" onClick={onClick}>
+        <button id="add-button" onClick={onClick} disabled={disabled}>
           add
         </button>
       </div>

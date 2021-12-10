@@ -8,7 +8,7 @@ export const IncompleteTodos = (props) => {
   //propsの分割代入
   const { incompleteTodos, onClickDone, onClickDelete } = props;
 
-  //input areaへのstyleの設定
+  //未完了リストのstyle
   const style = {
     backgroundColor: "#b0e0e6",
     width: "500px",
